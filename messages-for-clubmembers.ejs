@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Messages for club members</title>
+</head>
+<body>
+  <h1 color="red">Club member</h1>
+  <h1>Messages:</h1>
+  <ul>
+    <% messages.forEach(message => { %>
+      <li>
+        <strong><%= message.title %></strong>
+        <p><%= message.text %></p>
+        <em>By: <%= message.user.username %> at <%= new Date(message.time_stamp).toLocaleString() %></em>
+      </li>
+    <% }); %>
+  </ul>
+  <a href="/">Back to Home</a>
+</body>
+</html>

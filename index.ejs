@@ -2,21 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Message Form</title>
 </head>
 <body>
-  <% if (user) {%>
+  <% if (user) { %>
     <h1>WELCOME BACK <%= user.username %></h1>
+    <form action="/send-message" method="POST">
+      <label for="title">Title</label>
+      <input id="title" name="title" placeholder="Title" type="text" required />
+      
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Hello..." type="text" required></textarea>
+
+      <label for="clubmember-validation">Password</label>
+      <input id="clubmember-validation" name="clubmember-validation" placeholder="Enter password to check club member status" type="password" required />
+
+      <button>Send Message</button>
+    </form>
     <a href="/log-out">LOG OUT</a>
   <% } else { %>
-    <h1>please log in</h1>
+    <h1>Please log in</h1>
     <form action="/log-in" method="POST">
       <label for="username">Username</label>
-      <input name="username" placeholder="username" type="text" />
+      <input id="username" name="username" placeholder="Username" type="text" required />
       <label for="password">Password</label>
-      <input name="password" type="password" />
+      <input id="password" name="password" type="password" required />
       <button>Log In</button>
     </form>
-  <%}%>
+  <% } %>
 </body>
 </html>
