@@ -128,17 +128,17 @@ app.post("/send-message", checkPasscode, async (req, res, next) => {
         title: req.body.title,
         text: req.body.message,
         user: req.user._id
-      })
-    const result = await message.save();
-    res.redirect("/messages-for-clubmembers");
-    } else{
-      // Handle non-clubmember behavior (optional redirect or error message)
-      return res.redirect("/messages")
+      });
+      const result = await message.save();
+      return res.redirect("/messages-for-clubmembers"); // Make sure this redirect is correct
+    } else {
+      return res.redirect("/messages"); // Optional: Handle non-club member behavior
     }
   } catch (err) {
     return next(err);
   }
 });
+
 
 // Route to render messages based on membership status
 app.get("/messages", async (req, res, next) => {
@@ -158,6 +158,19 @@ app.get("/messages", async (req, res, next) => {
     next(err);
   }
 });
+
+app.get("/messages-for-clubmembers", async (req, res, next) => {
+  console.log("Received request for /messages-for-clubmembers");
+  try {
+    let messages = await Message.find().populate('user').exec();
+    res.render("messages-for-clubmembers", { messages });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching messages for club members");
+  }
+});
+
+
 
 app.post(
   "/log-in",
