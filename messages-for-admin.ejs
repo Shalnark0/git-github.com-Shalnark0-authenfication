@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Messages for club members</title>
+</head>
+<body>
+  <h1 color="red">Club member</h1>
+  <h1>Messages:</h1>
+  <!-- messages-for-admin.ejs -->
+  <ul>
+    <% messages.forEach(message => { %>
+      <li>
+        <span>
+          <strong><%= message.title %></strong>
+          <p><%= message.text %></p>
+          <em>By: <%= message.user.username %> at <%= new Date(message.time_stamp).toLocaleString() %></em>
+          <form method="POST" action="/delete-message/<%= message._id %>">
+            <button type="submit">Delete Permanently</button>
+          </form>
+        </span>        
+      </li>
+    <% }); %>
+  </ul>
+
+  <a href="/">Back to Home</a>
+</body>
+</html>

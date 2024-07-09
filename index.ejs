@@ -7,7 +7,7 @@
 <body>
   <% if (user) { %>
     <h1>WELCOME BACK <%= user.username %></h1>
-    <form action="/send-message" method="POST">
+    <form action="/send-message" method="POST" autocomplete="__away">
       <label for="title">Title</label>
       <input id="title" name="title" placeholder="Title" type="text" required />
       
@@ -15,7 +15,7 @@
       <textarea id="message" name="message" placeholder="Hello..." type="text" required></textarea>
 
       <label for="clubmember-validation">Password</label>
-      <input id="clubmember-validation" name="clubmember-validation" placeholder="Enter password to check club member status" type="password" required />
+      <input id="clubmember-validation"  autocomplete="off" name="clubmember-validation" placeholder="Enter password to check club member status" type="password" required />
 
       <button>Send Message</button>
     </form>
